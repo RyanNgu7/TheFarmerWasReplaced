@@ -97,11 +97,12 @@ def repeated_a_star(relocations, maze_size):
 	def action():
 		init_x = get_pos_x()
 		init_y = get_pos_y()
-		do_a_flip()
+
 		solves_done = 0
 		known_walls = set()  # ((x,y), direction) for walls
 	
 		# Plant maze
+		do_a_flip()
 		plant(Entities.Bush)
 		substance = maze_size * 2**(num_unlocked(Unlocks.Mazes) - 1)
 		use_item(Items.Weird_Substance, substance)
@@ -110,8 +111,8 @@ def repeated_a_star(relocations, maze_size):
 			if goal_check():
 				use_item(Items.Weird_Substance, substance)
 				solves_done += 1
-				if solves_done >= relocations:
-					break
+				if solves_done == 300:
+					pass
 			start = (get_pos_x(), get_pos_y())
 			goal = measure()  # could be treasure position or nearest frontier
 	
@@ -171,4 +172,4 @@ def maze_v4(relocations):
 		for i in range(maze_size):
 			move(East)
 			
-maze_v4(20)
+maze_v4(300)

@@ -1,31 +1,47 @@
 size = get_world_size()
-# pass -1 to stay still in that axis
-def move_to(d_x = -1, d_y = -1):
-	if d_x == -1:
-		d_x = get_pos_x()
-	if d_y == -1:
-		d_y = get_pos_y()
-	
-	c_x = get_pos_x() # current x
-	c_y = get_pos_y() # current y
-	middle = size / 2
-	
-	steps_x = d_x - c_x
-	steps_y = d_y - c_y
-	
-	if steps_x > 0:
-		for i in range(steps_x):
-			move(East)
-	elif steps_x < 0:
-		for i in range(-steps_x):
-			move(West)
-			
-	if steps_y > 0:
-		for i in range(steps_y):
-			move(North)
-	elif steps_y < 0:
-		for i in range(-steps_y):
-			move(South)
+
+# t_x,t_y - target (x,y); pass -1 to stay
+# in in x or y axis
+def move_to(t_x, t_y):
+	# calculate distances from c_x to t_x
+	c_x = get_pos_x()
+	direct_dx = t_x - c_x
+	if (direct_dx != 0) and t_x >= 0:
+		wrap_dx = u.size - abs(direct_dx)
+		if abs(direct_dx) <= abs(wrap_dx):		# use direct path
+			if direct_dx > 0:	
+				for i in range(direct_dx):
+					move(East)
+			else:
+				for i in range(-direct_dx):
+					move(West)
+		else:									# use wrap path
+			if direct_dx > 0:
+				for i in range(wrap_dx):
+					move(West)
+			else:
+				for i in range(wrap_dx):
+					move(East)
+
+	# calculate distances from c_y to t_y
+	c_y = get_pos_y()
+	direct_dy = t_y - c_y
+	if (direct_dy != 0) and t_y >= 0:
+		wrap_dy = u.size - abs(direct_dy)
+		if abs(direct_dy) <= abs(wrap_dy):		# use direct path
+			if direct_dy > 0:	
+				for i in range(direct_dy):
+					move(North)
+			else:
+				for i in range(-direct_dy):
+					move(South)
+		else:									# use wrap path
+			if direct_dy > 0:
+				for i in range(wrap_dy):
+					move(South)
+			else:
+				for i in range(wrap_dy):
+					move(North)
 			
 def frugal_plant(d_ground, d_plant):
 	for x in range(size):
