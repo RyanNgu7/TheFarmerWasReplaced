@@ -7,7 +7,7 @@ def move_to(t_x, t_y):
 	c_x = get_pos_x()
 	direct_dx = t_x - c_x
 	if (direct_dx != 0) and t_x >= 0:
-		wrap_dx = size - abs(direct_dx)
+		wrap_dx = u.size - abs(direct_dx)
 		if abs(direct_dx) <= abs(wrap_dx):		# use direct path
 			if direct_dx > 0:	
 				for i in range(direct_dx):
@@ -27,7 +27,7 @@ def move_to(t_x, t_y):
 	c_y = get_pos_y()
 	direct_dy = t_y - c_y
 	if (direct_dy != 0) and t_y >= 0:
-		wrap_dy = size - abs(direct_dy)
+		wrap_dy = u.size - abs(direct_dy)
 		if abs(direct_dy) <= abs(wrap_dy):		# use direct path
 			if direct_dy > 0:	
 				for i in range(direct_dy):
