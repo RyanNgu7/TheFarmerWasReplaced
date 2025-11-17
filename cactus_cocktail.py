@@ -3,7 +3,7 @@ OPP_DIRS = {North: South,
 		   East: West,
 		   South: North,
 		   West: East}
-   
+swapped = False
 # compare current cactus with next cactus.
 # if current cactus is greater than next cactus, swap
 def measure_swap(measure_dir):
@@ -133,8 +133,12 @@ def cactus_field():
 	harvest()
 
 if __name__ == "__main__":
+	times = []
 	while True:
+		start = get_time()
 		cactus_field()
+		end = get_time()
+		times.append(end-start)
 
 #clear()
 #cocktail_array(East)()
