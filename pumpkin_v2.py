@@ -62,6 +62,7 @@ def pumpkin_field():
 			sub_pumpkin(sublist)()
 		start = end      
 	m.pause()
+	do_a_flip()
 	harvest()
 
 if __name__ == "__main__":
